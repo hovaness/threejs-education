@@ -67,7 +67,6 @@ function main() {
     });
     const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
     earthMesh.position.x = 8;
-    sunMesh.add(earthMesh);
     solarSystem.add(earthMesh);
     objects.push({
         item: earthMesh,
@@ -94,8 +93,13 @@ function main() {
         item:moonMesh,
         speed:-0.1,
     });
-
+    const planetXMaterial = new THREE.MeshPhongMaterial({
+        color:  0x888888,
+        emissive: 0xFFA500
+    });
+    
     const planetXOrbit = new THREE.Object3D();
+    planetXOrbit.position.y = 5;
     planetXOrbit.position.x = 15;
     solarSystem.add(planetXOrbit);
     objects.push({
@@ -104,6 +108,7 @@ function main() {
     })
 
     const planetXDiffrentOrbit = new THREE.Object3D();
+    planetXDiffrentOrbit.position.y = 5;
     planetXDiffrentOrbit.position.x = 15;
     solarSystem.add(planetXDiffrentOrbit);
     objects.push({
@@ -113,12 +118,9 @@ function main() {
     
     //2 task
 
-    const planetXMaterial = new THREE.MeshPhongMaterial({
-        color:  0x888888,
-        emissive: 0xFFA500
-    });
     const planetXMesh = new THREE.Mesh(sphereGeometry, planetXMaterial);
     planetXMesh.scale.set(1.5,1.5,1.5);
+    planetXMesh.position.y = 5;
     planetXMesh.position.x = 15;
     solarSystem.add(planetXMesh);
     objects.push({
@@ -126,13 +128,6 @@ function main() {
         speed: 1.5,
     })
 
-    const planetXFirstSputnikOrbit =  new THREE.Object3D();
-    planetXFirstSputnikOrbit.position.x = 3;
-    planetXOrbit.add(planetXFirstSputnikOrbit);
-    objects.push({
-        item: planetXFirstSputnikOrbit,
-        speed: 1,
-    })   
     
     const planetXFirstSputnikMaterial = new THREE.MeshPhongMaterial({
         color:  0x888888,
@@ -140,7 +135,8 @@ function main() {
     })
     const planetXFirstSputnikMesh = new THREE.Mesh(sphereGeometry, planetXFirstSputnikMaterial);
     planetXFirstSputnikMesh.scale.set(.3,.3,.3);
-    planetXFirstSputnikOrbit.add(planetXFirstSputnikMesh);
+    planetXFirstSputnikMesh.position.x = 3;
+    planetXOrbit.add(planetXFirstSputnikMesh);
     objects.push({
         item:planetXFirstSputnikMesh,
         speed:2,
@@ -158,11 +154,6 @@ function main() {
         item:planetXSecondSputnikMesh,
         speed:-10,
     });    
-
-
-
-
-
 
     function render(time) {
         time *= 0.001;

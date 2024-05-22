@@ -4,6 +4,7 @@ function main() {
     const canvas = document.querySelector('#c');
     const renderer = new THREE.WebGLRenderer({ canvas });
     const objects = []
+    const planetXObj = []
     const scene = new THREE.Scene()
 
 
@@ -102,7 +103,7 @@ function main() {
     planetXOrbit.position.y = 5;
     planetXOrbit.position.x = 15;
     solarSystem.add(planetXOrbit);
-    objects.push({
+    planetXObj.push({
         item: planetXOrbit,
         speed: 3,
     })
@@ -111,7 +112,7 @@ function main() {
     planetXDiffrentOrbit.position.y = 5;
     planetXDiffrentOrbit.position.x = 15;
     solarSystem.add(planetXDiffrentOrbit);
-    objects.push({
+    planetXObj.push({
         item:planetXDiffrentOrbit,
         speed:-5,
     })
@@ -123,7 +124,7 @@ function main() {
     planetXMesh.position.y = 5;
     planetXMesh.position.x = 15;
     solarSystem.add(planetXMesh);
-    objects.push({
+    planetXObj.push({
         item:planetXMesh,
         speed: 1.5,
     })
@@ -137,7 +138,7 @@ function main() {
     planetXFirstSputnikMesh.scale.set(.3,.3,.3);
     planetXFirstSputnikMesh.position.x = 3;
     planetXOrbit.add(planetXFirstSputnikMesh);
-    objects.push({
+    planetXObj.push({
         item:planetXFirstSputnikMesh,
         speed:2,
     });
@@ -150,7 +151,7 @@ function main() {
     planetXSecondSputnikMesh.scale.set(.5,.5,.5);
     planetXSecondSputnikMesh.position.x = 4
     planetXDiffrentOrbit.add(planetXSecondSputnikMesh);
-    objects.push({
+    planetXObj.push({
         item:planetXSecondSputnikMesh,
         speed:-10,
     });    
@@ -160,6 +161,9 @@ function main() {
         objects.forEach((obj) => {
             obj.item.rotation.y = (obj.speed * time);
         });
+        planetXObj.forEach((obj) => {
+            obj.item.rotation.z = (obj.speed * time);
+        })
         renderer.render(scene, camera)
         requestAnimationFrame(render);
     }
